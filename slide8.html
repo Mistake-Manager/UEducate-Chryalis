@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, height=720">
+<title>Revenue Split</title>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+<style>
+body {
+  margin:0;
+  overflow:hidden;
+  background:#0F172A;
+  font-family:'Inter';
+  color:white;
+}
+
+.slide {
+  width:1280px;
+  height:720px;
+  background:url("https://page.gensparksite.com/slides_images/db6c9a5bcb5eac8a488d4d126f65f8df.webp") center/cover;
+  position:relative;
+}
+
+.overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(15,23,42,0.94);
+}
+
+.content {
+  position:relative;
+  z-index:2;
+  height:100%;
+  padding:40px 60px;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+.title {
+  text-align:center;
+  font-family:'Poppins';
+  font-size:32px;
+  color:#94A3B8;
+}
+
+.amount {
+  text-align:center;
+  font-family:'Poppins';
+  font-size:48px;
+  font-weight:800;
+}
+
+/* GRID */
+.grid {
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* CARDS */
+.card {
+  width:300px;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(30,41,59,0.7);
+  text-align:center;
+  transition:0.4s;
+}
+
+.card:hover {
+  transform:translateY(-10px);
+}
+
+/* COLORS */
+.green { color:#22C55E; }
+.blue { color:#38BDF8; }
+
+/* CHART */
+#chart {
+  width:420px;
+  height:420px;
+}
+
+/* FOOTER */
+.footer {
+  margin:auto;
+  background:rgba(34,197,94,0.1);
+  padding:15px 25px;
+  border-left:4px solid #22C55E;
+  border-radius:6px;
+}
+
+/* ANIMATION */
+.fade { animation:fadeUp 0.8s ease; }
+
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="slide">
+<div class="overlay"></div>
+
+<div class="content">
+
+<div class="fade">
+  <div class="title">Revenue Split</div>
+  <div class="amount">₹30 CRORE</div>
+</div>
+
+<div class="grid">
+
+<!-- LEFT -->
+<div class="card fade">
+  <i class="fas fa-hand-holding-dollar green text-3xl mb-4"></i>
+  <h2>Chrysalis</h2>
+  <p class="green text-3xl font-bold">₹9 Cr</p>
+  <p>30%</p>
+</div>
+
+<!-- CHART -->
+<div id="chart"></div>
+
+<!-- RIGHT -->
+<div class="card fade">
+  <i class="fas fa-server blue text-3xl mb-4"></i>
+  <h2>UEducate</h2>
+  <p class="blue text-3xl font-bold">₹21 Cr</p>
+  <p>70%</p>
+</div>
+
+</div>
+
+<div class="footer fade">
+₹9 Crore comes without any tech investment
+</div>
+
+</div>
+</div>
+
+<script>
+var chart = echarts.init(document.getElementById('chart'));
+
+chart.setOption({
+  tooltip: { show:false },
+
+  series: [{
+    type: 'pie',
+    radius: ['60%','85%'],
+    label: { show:false },
+
+    emphasis: {
+      label: {
+        show:true,
+        position:'center',
+        fontSize:28,
+        fontWeight:'bold',
+        formatter: '{b}\n{d}%'
+      }
+    },
+
+    data: [
+      { value:30, name:'Chrysalis', itemStyle:{ color:'#22C55E' }},
+      { value:70, name:'UEducate', itemStyle:{ color:'#38BDF8' }}
+    ]
+  }]
+});
+</script>
+
+</body>
+</html>
